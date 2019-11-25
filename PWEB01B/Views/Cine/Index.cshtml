@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PWEB01B.Models.Cine>
+
+@{
+    ViewBag.Title = "Listado de Cinemas";
+}
+
+<h2>Cinemas</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Cinema", "Create") || 
+
+    @Html.ActionLink("Nueva Direccion", "Create", "DireccionCine")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            Direccion (Calle, Numero, Ciudad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @if (item.DireccionCine != null)
+            {
+
+                @Html.DisplayFor(modelItem => item.DireccionCine.Calle) @Html.Raw(", ")
+
+                @Html.DisplayFor(modelItem => item.DireccionCine.Numero) @Html.Raw(", ")
+
+                @Html.DisplayFor(modelItem => item.DireccionCine.Ciudad)
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.CineId }) |
+            @Html.ActionLink("Ver Detalles", "Details", new { id=item.CineId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.CineId })
+        </td>
+    </tr>
+}
+
+</table>

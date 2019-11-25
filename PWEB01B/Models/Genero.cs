@@ -20,6 +20,7 @@ namespace PWEB01B.Models
             this.Peliculas = new HashSet<Pelicula>();
         }
     
+        
         public int GeneroId { get; set; }
         public string Nombre { get; set; }
     
