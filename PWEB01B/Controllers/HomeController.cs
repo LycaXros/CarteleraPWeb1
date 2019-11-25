@@ -15,7 +15,7 @@ namespace PWEB01B.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Aplicacion Trabajo Final Programacion WEB 1";
 
             return View();
         }
