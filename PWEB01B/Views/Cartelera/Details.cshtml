@@ -1,0 +1,42 @@
+﻿@model PWEB01B.Models.Pasa
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detales</h2>
+
+<div>
+    <h4>Pasa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre del Cine
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cine.Nombre)
+        </dd>
+
+        <dt>
+            Titulo Pelicula
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pelicula.Titulo)
+        </dd>
+
+        <dt>
+            Hora de la Tanda
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tanda.Hora)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { Cid=Model.CineId, Pid= Model.PeliculaId, Tid =Model.TandaId /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

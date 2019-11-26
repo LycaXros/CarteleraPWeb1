@@ -1,0 +1,48 @@
+﻿@model PWEB01B.Models.Pasa
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Entrada de Cartelera</h2>
+
+<h3>Estas Seguro de Eliminar la Entrada ?</h3>
+<div>
+    <h4>Pasa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre del Cinema
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cine.Nombre)
+        </dd>
+
+        <dt>
+            Titulo de la Pelicula
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pelicula.Titulo)
+        </dd>
+
+        <dt>
+            Hora de la Tanda
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tanda.Hora)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver A la Lista", "Index")
+        </div>
+    }
+</div>

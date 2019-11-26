@@ -1,0 +1,49 @@
+﻿@model PWEB01B.Models.Actor
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles </h2>
+
+<div>
+    <h4>Actor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        @if (Model.Peliculas.Count > 0)
+        {
+        <dt>
+            Peliculas
+        </dt>
+
+        <dd>
+            <ol>
+                @foreach (var item in Model.Peliculas)
+                {
+                    <li>@item.Titulo (@item.Genero.Nombre)</li>
+                }
+            </ol>
+        </dd>
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver Al Listado", "Index")
+</p>

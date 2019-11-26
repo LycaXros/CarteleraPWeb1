@@ -29,3 +29,18 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+<div class="row">
+    @foreach (var item in ViewBag.Cartelera)
+    {
+    <div class="col-md-6 col-sm-12">
+        <strong>@item.Cine.Nombre.</strong>
+        @if (item.Cine.DireccionCine != null)
+        {
+            @Html.Raw(item.Cine.DireccionCine.Ciudad + ".")
+            @Html.Raw(item.Cine.DireccionCine.Calle)
+            @Html.Raw(item.Cine.DireccionCine.Numero)
+        }
+    </div>
+    }
+</div>

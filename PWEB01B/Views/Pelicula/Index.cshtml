@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PWEB01B.Models.Pelicula>
+
+@{
+    ViewBag.Title = "Listado de Peliculas";
+}
+
+<h2>Peliculas</h2>
+
+<p>
+    @Html.ActionLink("Nueva Pelicula", "Create") ||
+    <a target="_blank" href="~/Content/Images/MovieC.png">Ver la Clasificacion de Peliculas</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Director)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clasificacion)
+        </th>
+        <th>
+            Genero
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Director)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clasificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genero.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.PeliculaId }) |
+            @Html.ActionLink("Ver Detalles", "Details", new { id=item.PeliculaId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.PeliculaId })
+        </td>
+    </tr>
+}
+
+</table>
