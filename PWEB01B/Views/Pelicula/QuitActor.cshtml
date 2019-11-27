@@ -1,0 +1,42 @@
+﻿@model PWEB01B.ViewModel.ActorPelicula
+
+@{
+    ViewBag.Title = "Quitar Actor";
+}
+
+<h2>Desaccionar Actor</h2>
+
+<h3>Seguro de Quitar el Actor de la Pelicula</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Pelicula
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pelicula.Titulo)
+        </dd>
+
+        <dt>
+            Actor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActorName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.PeliculaId)
+        @Html.HiddenFor(model => model.ActorId)
+        <div class="form-actions no-color">
+            <input type="submit" value="Desvincular" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Detalle", "Details", new { id = Model.PeliculaId })
+        </div>
+    }
+</div>

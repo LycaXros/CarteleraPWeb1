@@ -158,7 +158,7 @@ namespace PWEB01B.Controllers
                 pelicula.Actores.Add(act);
                 db.Entry(pelicula).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = actPeli.PeliculaId});
             }
             var ids = pelicula.Actores.Select(x => x.Id).ToArray();
             var query = db.Actors
@@ -170,6 +170,38 @@ namespace PWEB01B.Controllers
                 }).ToList();
             ViewBag.ActorId = new SelectList(query, "Id", "Text", actPeli.ActorId);
             return View(actPeli);
+        }
+        public ActionResult QuitActor(int? Pid, int? Aid)
+        {
+            if (Pid == null || Aid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Pelicula pelicula = db.Peliculas.Find(Pid);
+            Actor act = db.Actors.Find(Aid);
+            if (pelicula == null || act == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Act = act;
+            return View(new ViewModel.ActorPelicula { 
+                Pelicula = pelicula, 
+                PeliculaId = (int)Pid,
+                Actor = act,
+                ActorId = (int)Aid
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult QuitActor([Bind(Include = "PeliculaId, ActorId")] ViewModel.ActorPelicula actPeli)
+        {
+            Pelicula pelicula = db.Peliculas.Find(actPeli.PeliculaId);
+            Actor act = db.Actors.Find(actPeli.ActorId);
+            pelicula.Actores.Remove(act);
+            db.SaveChanges();
+            return RedirectToAction("Details",new { id = actPeli.PeliculaId });
         }
 
         protected override void Dispose(bool disposing)

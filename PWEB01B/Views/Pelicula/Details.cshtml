@@ -4,7 +4,7 @@
     ViewBag.Title = "Detalles";
 }
 
-<h2>Detalles de la Pelicua</h2>
+<h2>Detalles de la Pelicula</h2>
 
 <div>
     <h4>Pelicula</h4>
@@ -62,7 +62,7 @@
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.PeliculaId }) |
     @Html.ActionLink("Volver al listado", "Index")
-    @if (Model.Actores.Count > 0 && Model.Actores.Count < 3)
+    @if (Model.Actores.Count < 3)
     {
         @Html.Raw("| ")
         @Html.ActionLink("Agregar Actor", "AddActor", new { id = Model.PeliculaId })
