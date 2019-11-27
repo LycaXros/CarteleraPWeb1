@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bcac2c2fd16e401ba740542cea335ec7" Name="Diagram1">
-        <EntityTypeShape EntityType="CarteleraDBModel.Actor" Width="1.5" PointX="0.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarteleraDBModel.Cine" Width="1.5" PointX="7.875" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarteleraDBModel.DireccionCine" Width="1.5" PointX="5.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarteleraDBModel.Genero" Width="1.5" PointX="2.75" PointY="4.125" IsExpanded="true" />
+      <Diagram DiagramId="64dfef3ad57e441daf3dbf22e6418e72" Name="Diagram1">
+        <EntityTypeShape EntityType="CarteleraDBModel.Actor" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarteleraDBModel.Cine" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarteleraDBModel.DireccionCine" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarteleraDBModel.Genero" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CarteleraDBModel.Pasa" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CarteleraDBModel.Pelicula" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarteleraDBModel.Tanda" Width="1.5" PointX="3.5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarteleraDBModel.Tarifa" Width="1.5" PointX="5.625" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarteleraDBModel.Tanda" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarteleraDBModel.Tarifa" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="CarteleraDBModel.FK_CineDireccionCine" ManuallyRouted="false" />
         <AssociationConnector Association="CarteleraDBModel.FK_CineTarifa" ManuallyRouted="false" />
         <AssociationConnector Association="CarteleraDBModel.FK_Pasas_Cines" ManuallyRouted="false" />

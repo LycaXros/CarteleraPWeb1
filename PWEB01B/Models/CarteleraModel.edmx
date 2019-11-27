@@ -244,11 +244,11 @@
             <PropertyRef Name="CineId" />
           </Key>
           <Property Name="CineId" Type="Guid" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK_CineDireccionCine" FromRole="Cines" ToRole="DireccionCines" />
           <NavigationProperty Name="Tarifas" Relationship="Self.FK_CineTarifa" FromRole="Cines" ToRole="Tarifas" />
-          <NavigationProperty Name="Pasando" Relationship="Self.FK_Pasas_Cines" FromRole="Cines" ToRole="Pasas" />
-          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cartelera" Relationship="Self.FK_Pasas_Cines" FromRole="Cines" ToRole="Pasas" />
         </EntityType>
         <EntityType Name="DireccionCine">
           <Key>
@@ -390,7 +390,7 @@
           <End Role="Actors" Type="Self.Actor" Multiplicity="*" />
           <End Role="Peliculas" Type="Self.Pelicula" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CarteleraDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actors" EntityType="Self.Actor" />
           <EntitySet Name="Cines" EntityType="Self.Cine" />
           <EntitySet Name="DireccionCines" EntityType="Self.DireccionCine" />
@@ -450,7 +450,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CarteleraDBModelStoreContainer" CdmEntityContainer="CarteleraDBEntities">
+        <EntityContainerMapping StorageEntityContainer="CarteleraDBModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Actors">
             <EntityTypeMapping TypeName="CarteleraDBModel.Actor">
               <MappingFragment StoreEntitySet="Actors">
@@ -463,8 +463,8 @@
           <EntitySetMapping Name="Cines">
             <EntityTypeMapping TypeName="CarteleraDBModel.Cine">
               <MappingFragment StoreEntitySet="Cines">
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="CineId" ColumnName="CineId" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>

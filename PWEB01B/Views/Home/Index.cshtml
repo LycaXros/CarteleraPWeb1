@@ -7,29 +7,28 @@
 </div>
 
 @*<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>*@
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
 
 <div class="row">
-    <div class="col-md-2"></div>
     @foreach (var item in ViewBag.Cartelera)
     {
         <div class="col-md-4 col-sm-12">
@@ -47,34 +46,38 @@
                     @Html.Raw(tarifa.Dia + " (RD$ " + tarifa.Precio + "). ")
                 }
             </p>
-            <p>
-                <strong>@item.Cine.Nombre.</strong>&nbsp;
-                <strong>@item.Pelicula.Titulo </strong>(@item.Pelicula.Genero.Nombre)&nbsp;
-                Dir. @item.Pelicula.Director.&nbsp;
-                Art.
-                @foreach (var a in item.Pelicula.Actores)
+            @foreach (var pelis in item.Peliculas)
                 {
-                    @Html.Raw(a.Nombre + " " + a.Apellidos)
-                    if (item.Pelicula.Actores.Count > 1)
-                    {
-                        @Html.Raw(", ")
-                    }
-                    else
-                    {
-                        @Html.Raw(". ")
-                    }
-                }
-                Tandas @item.TandasString.&nbsp;
-                Clasificacion @item.Pelicula.Clasificacion
-                - @{
-                    var d = PWEB01B.Helpers.EnumHelper<PWEB01B.Models.ClasificacionMovie>
-                        .GetDisplayValue(item.Pelicula.Clasificacion);
-                }
-                <i>(@Html.DisplayFor(e => d))</i>
+                <p>
+                    <strong>@item.Cine.Nombre. </strong>
 
-            </p>
+                    <strong>@pelis.Titulo </strong>( @pelis.Genero.Nombre)&nbsp;
+                    Dir.@pelis.Director.&nbsp;
+                    Art.
+                    @foreach (var a in pelis.Actores)
+                    {
+                        @Html.Raw(a.Nombre + " " + a.Apellidos)
+                        if (pelis.Actores.Count > 1)
+                        {
+                            @Html.Raw(", ")
+                        }
+                        else
+                        {
+                            @Html.Raw(". ")
+                        }
+                    }
+                    Tandas @item.TandasString.&nbsp;
+                    Clasificacion @pelis.Clasificacion
+                    - @{
+                        var d = PWEB01B.Helpers.EnumHelper<PWEB01B.Models.ClasificacionMovie>
+                            .GetDisplayValue(pelis.Clasificacion);
+                    }
+                    <i>(@Html.DisplayFor(e => d))</i>
+                </p>
+                        }
+
+
         </div>
-    }
+                        }
 
-    <div class="col-md-2"></div>
 </div>
