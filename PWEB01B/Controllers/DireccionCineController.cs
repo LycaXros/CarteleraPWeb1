@@ -39,7 +39,7 @@ namespace PWEB01B.Controllers
         // GET: DireccionCine/Create
         public ActionResult Create()
         {
-            var cinesFree = db.Cines.Where(c => c.DireccionCine == null);
+            var cinesFree = db.Cines.Where(c => c.Direccion == null);
             ViewBag.CineId = new SelectList(cinesFree, "CineId", "Nombre");
             return View();
         }
@@ -58,7 +58,7 @@ namespace PWEB01B.Controllers
                 return RedirectToAction("Index");
             }
 
-            var cinesFree = db.Cines.Where(c => c.DireccionCine == null);
+            var cinesFree = db.Cines.Where(c => c.Direccion == null);
             ViewBag.CineId = new SelectList(cinesFree, "CineId", "Nombre", direccionCine.CineId);
             return View(direccionCine);
         }

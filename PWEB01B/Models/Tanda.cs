@@ -17,13 +17,13 @@ namespace PWEB01B.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tanda()
         {
-            this.Pasas = new HashSet<Pasa>();
+            this.Cartelera = new HashSet<Pasa>();
         }
     
         public int Id { get; set; }
         public string Hora { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pasa> Pasas { get; set; }
+        public virtual ICollection<Pasa> Cartelera { get; set; }
     }
 }

@@ -17,33 +17,39 @@
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
             Direccion (Calle, Numero, Ciudad)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @if (item.DireccionCine != null)
-            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Telefono)
+    </td>
+    <td>
+        @if (item.Direccion != null)
+        {
 
-                @Html.DisplayFor(modelItem => item.DireccionCine.Calle) @Html.Raw(", ")
+            @Html.DisplayFor(modelItem => item.Direccion.Calle) @Html.Raw(", ")
 
-                @Html.DisplayFor(modelItem => item.DireccionCine.Numero) @Html.Raw(", ")
+            @Html.DisplayFor(modelItem => item.Direccion.Numero) @Html.Raw(", ")
 
-                @Html.DisplayFor(modelItem => item.DireccionCine.Ciudad)
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.CineId }) |
-            @Html.ActionLink("Ver Detalles", "Details", new { id=item.CineId }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.CineId })
-        </td>
-    </tr>
+            @Html.DisplayFor(modelItem => item.Direccion.Ciudad)
+        }
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.CineId }) |
+        @Html.ActionLink("Ver Detalles", "Details", new { id = item.CineId }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.CineId })
+    </td>
+</tr>
 }
 
 </table>

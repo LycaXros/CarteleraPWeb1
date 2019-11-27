@@ -10,14 +10,21 @@
 namespace PWEB01B.Models
 {
     using System;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public enum ClasificacionMovie : int
     {
+        [Display(Name = "Apta para todo público")]
         A = 0,
+        [Display(Name = "Apta para mayores de 8 años")]
         A_Plus = 1,
+        [Display(Name = "Mayores de 14 años")]
         B = 2,
+        [Display(Name = "Mayores de 16 años")]
         C = 3,
+        [Display(Name = "Mayores de 18 años")]
         D = 4,
+        [Display(Name = "Mayores de 18 años (pornografía)")]
         R = 5
     }
 }

@@ -17,8 +17,8 @@ namespace PWEB01B.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pelicula()
         {
-            this.Pasas = new HashSet<Pasa>();
-            this.Actors = new HashSet<Actor>();
+            this.Cartelera = new HashSet<Pasa>();
+            this.Actores = new HashSet<Actor>();
         }
     
         public int PeliculaId { get; set; }
@@ -29,8 +29,8 @@ namespace PWEB01B.Models
     
         public virtual Genero Genero { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pasa> Pasas { get; set; }
+        public virtual ICollection<Pasa> Cartelera { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Actor> Actors { get; set; }
+        public virtual ICollection<Actor> Actores { get; set; }
     }
 }

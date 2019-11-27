@@ -1,14 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Cartelera";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Cartelera</h1>
 </div>
 
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
@@ -28,19 +26,55 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
-</div>
+</div>*@
 
 <div class="row">
+    <div class="col-md-2"></div>
     @foreach (var item in ViewBag.Cartelera)
     {
-    <div class="col-md-6 col-sm-12">
-        <strong>@item.Cine.Nombre.</strong>
-        @if (item.Cine.DireccionCine != null)
-        {
-            @Html.Raw(item.Cine.DireccionCine.Ciudad + ".")
-            @Html.Raw(item.Cine.DireccionCine.Calle)
-            @Html.Raw(item.Cine.DireccionCine.Numero)
-        }
-    </div>
+        <div class="col-md-4 col-sm-12">
+            <p>
+                <strong>@item.Cine.Nombre.</strong>
+                @if (item.Cine.Direccion != null)
+                {
+                    @Html.Raw(item.Cine.Direccion.Ciudad + ", Calle ")
+                    @Html.Raw(item.Cine.Direccion.Calle + ", # ")
+                    @Html.Raw(item.Cine.Direccion.Numero + ".")
+                }
+                Tel. @item.Cine.Telefono.&nbsp;
+                @foreach (var tarifa in item.Cine.Tarifas)
+                {
+                    @Html.Raw(tarifa.Dia + " (RD$ " + tarifa.Precio + "). ")
+                }
+            </p>
+            <p>
+                <strong>@item.Cine.Nombre.</strong>&nbsp;
+                <strong>@item.Pelicula.Titulo </strong>(@item.Pelicula.Genero.Nombre)&nbsp;
+                Dir. @item.Pelicula.Director.&nbsp;
+                Art.
+                @foreach (var a in item.Pelicula.Actores)
+                {
+                    @Html.Raw(a.Nombre + " " + a.Apellidos)
+                    if (item.Pelicula.Actores.Count > 1)
+                    {
+                        @Html.Raw(", ")
+                    }
+                    else
+                    {
+                        @Html.Raw(". ")
+                    }
+                }
+                Tandas @item.TandasString.&nbsp;
+                Clasificacion @item.Pelicula.Clasificacion
+                - @{
+                    var d = PWEB01B.Helpers.EnumHelper<PWEB01B.Models.ClasificacionMovie>
+                        .GetDisplayValue(item.Pelicula.Clasificacion);
+                }
+                <i>(@Html.DisplayFor(e => d))</i>
+
+            </p>
+        </div>
     }
+
+    <div class="col-md-2"></div>
 </div>

@@ -41,16 +41,17 @@
         <dd>
             @Html.DisplayFor(model => model.Genero.Nombre)
         </dd>
-        @if (Model.Actors.Count > 0)
+        @if (Model.Actores.Count > 0)
         {
             <dt>
                 Actores
             </dt>
             <dd>
                 <ol>
-                    @foreach (var item in Model.Actors)
+                    @foreach (var item in Model.Actores)
                     {
-                        <li>@item.Nombre @item.Apellidos</li>
+                    <li>@item.Nombre @item.Apellidos
+                     || @Html.ActionLink("Quitar", "QuitActor", new { Pid = Model.PeliculaId, Aid = item.Id})</li>
                     }
                 </ol>
             </dd>
@@ -61,4 +62,9 @@
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.PeliculaId }) |
     @Html.ActionLink("Volver al listado", "Index")
+    @if (Model.Actores.Count > 0 && Model.Actores.Count < 3)
+    {
+        @Html.Raw("| ")
+        @Html.ActionLink("Agregar Actor", "AddActor", new { id = Model.PeliculaId })
+    }
 </p>

@@ -120,6 +120,58 @@ namespace PWEB01B.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult AddActor(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Pelicula pelicula = db.Peliculas.Find(id);
+            if (pelicula == null)
+            {
+                return HttpNotFound();
+            }
+            var ids = pelicula.Actores.Select(x => x.Id).ToArray();
+            var query = db.Actors
+                .Where(x=> !ids.Contains(x.Id))
+                .Select(x => new
+                {
+                    x.Id,
+                    Text = x.Nombre+" "+x.Apellidos
+                }).ToList();
+            ViewBag.ActorId = new SelectList(query, "Id", "Text");
+            return View(new ViewModel.ActorPelicula { Pelicula=pelicula, PeliculaId = (int)id });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddActor([Bind(Include = "PeliculaId, ActorId")] ViewModel.ActorPelicula actPeli)
+        {
+            Pelicula pelicula = db.Peliculas.Find(actPeli.PeliculaId);
+            Actor act = db.Actors.Find(actPeli.ActorId);
+            if (pelicula == null || act == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                pelicula.Actores.Add(act);
+                db.Entry(pelicula).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            var ids = pelicula.Actores.Select(x => x.Id).ToArray();
+            var query = db.Actors
+                .Where(x => !ids.Contains(x.Id))
+                .Select(x => new
+                {
+                    x.Id,
+                    Text = x.Nombre + " " + x.Apellidos
+                }).ToList();
+            ViewBag.ActorId = new SelectList(query, "Id", "Text", actPeli.ActorId);
+            return View(actPeli);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

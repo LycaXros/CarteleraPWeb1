@@ -13,14 +13,35 @@ namespace PWEB01B.Controllers
         public ActionResult Index()
         {
             CarteleraDBEntities db = new CarteleraDBEntities();
-            ViewBag.Cartelera = db.Pasas
+            var data = db.Pasas
                 .Include(p => p.Pelicula)
                 .Include(p => p.Pelicula.Genero)
-                .Include(p => p.Pelicula.Actors)
+                .Include(p => p.Pelicula.Actores)
                 .Include(p => p.Tanda)
                 .Include(p => p.Cine)
-                .Include(p => p.Cine.DireccionCine)
+                .Include(p => p.Cine.Direccion)
                 .Include(p => p.Cine.Tarifas);
+            var query = (from c in data
+                         group c by new { c.CineId, c.PeliculaId } into Cartelera
+                         orderby Cartelera.Key.CineId
+                         select new
+                         {
+                             Cartelera.Key.CineId,
+                             Cartelera.Key.PeliculaId,
+                             Tandas = Cartelera.Select(x => x.Tanda.Hora),
+                             Cartelera.FirstOrDefault().Pelicula,
+                             Cartelera.FirstOrDefault().Cine,
+                         })
+                                 .ToList()
+                                 .Select(c => new ViewModel.CarteleraViewModel
+                                 {
+                                     Cine = c.Cine,
+                                     Pelicula = c.Pelicula,
+                                     Tandas = c.Tandas,
+                                     CineId = c.CineId,
+                                     PeliculaId = c.PeliculaId
+                                 }).ToList();
+            ViewBag.Cartelera = query;
             return View();
         }
 

@@ -183,6 +183,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Actor.cs">
       <DependentUpon>CarteleraModel.tt</DependentUpon>
@@ -233,6 +234,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ActorPelicula.cs" />
+    <Compile Include="ViewModel\CarteleraViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\CarteleraDB.mdf" />
@@ -356,6 +359,7 @@
     <Content Include="Views\Cartelera\Details.cshtml" />
     <Content Include="Views\Cartelera\Edit.cshtml" />
     <Content Include="Views\Cartelera\Index.cshtml" />
+    <Content Include="Views\Pelicula\AddActor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

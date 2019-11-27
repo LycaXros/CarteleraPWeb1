@@ -11,23 +11,26 @@ namespace PWEB01B.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Cine
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cine()
         {
             this.Tarifas = new HashSet<Tarifa>();
-            this.Pasas = new HashSet<Pasa>();
+            this.Pasando = new HashSet<Pasa>();
         }
     
         public System.Guid CineId { get; set; }
         public string Nombre { get; set; }
+        [DisplayFormat(DataFormatString = "{0:(###)###-####}")]
+        public string Telefono { get; set; }
     
-        public virtual DireccionCine DireccionCine { get; set; }
+        public virtual DireccionCine Direccion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tarifa> Tarifas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pasa> Pasas { get; set; }
+        public virtual ICollection<Pasa> Pasando { get; set; }
     }
 }

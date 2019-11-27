@@ -17,7 +17,7 @@ namespace PWEB01B.Controllers
         // GET: Cine
         public ActionResult Index()
         {
-            var cines = db.Cines.Include(c => c.DireccionCine);
+            var cines = db.Cines.Include(c => c.Direccion);
             return View(cines.ToList());
         }
 
@@ -47,7 +47,7 @@ namespace PWEB01B.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CineId,Nombre")] Cine cine)
+        public ActionResult Create([Bind(Include = "CineId,Nombre,Telefono")] Cine cine)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace PWEB01B.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CineId,Nombre")] Cine cine)
+        public ActionResult Edit([Bind(Include = "CineId,Nombre,Telefono")] Cine cine)
         {
             if (ModelState.IsValid)
             {
