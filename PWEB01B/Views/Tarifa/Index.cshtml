@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PWEB01B.Models.Tarifa>
+
+@{
+    ViewBag.Title = "Tarifas";
+}
+
+<h2>Listado de Tarifas</h2>
+
+<p>
+    @Html.ActionLink("Nueva Tarifa", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cine.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cine.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.TarifaId }) |
+            @Html.ActionLink("Ver Detalles", "Details", new { id=item.TarifaId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.TarifaId })
+        </td>
+    </tr>
+}
+
+</table>

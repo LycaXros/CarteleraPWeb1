@@ -1,4 +1,4 @@
-﻿@model PWEB01B.Models.Genero
+﻿@model PWEB01B.Models.Tanda
 
 @{
     ViewBag.Title = "Edit";
@@ -11,16 +11,16 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Genero</h4>
+        <h4>Tanda</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.GeneroId)
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Hora, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @class = "form-control timepicker" } })
+                @Html.ValidationMessageFor(model => model.Hora, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -36,6 +36,9 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section scripts{
+@section scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Content/jquery.timepicker.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.timepicker.min.js"></script>
+    <script src="~/Scripts/TimepickerInit.js"></script>
 }

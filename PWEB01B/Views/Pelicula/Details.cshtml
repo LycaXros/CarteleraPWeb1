@@ -1,0 +1,70 @@
+﻿@model PWEB01B.Models.Pelicula
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles de la Pelicula</h2>
+
+<div>
+    <h4>Pelicula</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Director)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Director)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clasificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clasificacion)
+        </dd>
+
+        <dt>
+            Genero
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genero.Nombre)
+        </dd>
+        @if (Model.Actores.Count > 0)
+        {
+            <dt>
+                Actores
+            </dt>
+            <dd>
+                <ol>
+                    @foreach (var item in Model.Actores)
+                    {
+                    <li>@item.Nombre @item.Apellidos
+                     || @Html.ActionLink("Quitar", "QuitActor", new { Pid = Model.PeliculaId, Aid = item.Id})</li>
+                    }
+                </ol>
+            </dd>
+
+        }
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.PeliculaId }) |
+    @Html.ActionLink("Volver al listado", "Index")
+    @if (Model.Actores.Count < 3)
+    {
+        @Html.Raw("| ")
+        @Html.ActionLink("Agregar Actor", "AddActor", new { id = Model.PeliculaId })
+    }
+</p>

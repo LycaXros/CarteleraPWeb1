@@ -1,0 +1,48 @@
+﻿@model PWEB01B.Models.Cine
+
+@{
+    ViewBag.Title = "Eliminar Cine";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Seguro de Eliminar este Registro?</h3>
+<div>
+    <h4>Cine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion.Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion.Calle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirmar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver Al listado", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,41 @@
+﻿@model PWEB01B.Models.Cine
+
+@{
+    ViewBag.Title = "Detalles Cine";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Cine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion.Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion.Calle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CineId }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

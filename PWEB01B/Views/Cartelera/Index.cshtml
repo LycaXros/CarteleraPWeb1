@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PWEB01B.Models.Pasa>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2>Cartelera</h2>
+
+<p>
+    @Html.ActionLink("Nueva Entrada", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre del Cine
+        </th>
+        <th>
+            Titulo Pelicula
+        </th>
+        <th>
+            Hora de la Tanda
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cine.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pelicula.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tanda.Hora)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { Cid=item.CineId, Pid= item.PeliculaId, Tid =item.TandaId }) |
+            @Html.ActionLink("VerDetalles", "Details", new { Cid=item.CineId, Pid= item.PeliculaId, Tid =item.TandaId  /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Eliminar", "Delete", new {  Cid=item.CineId, Pid= item.PeliculaId, Tid =item.TandaId /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

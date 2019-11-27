@@ -1,0 +1,42 @@
+﻿@model PWEB01B.Models.Tarifa
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles de la Tarifa</h2>
+
+<div>
+    <h4>Tarifa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cine.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cine.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.TarifaId }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

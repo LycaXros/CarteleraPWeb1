@@ -170,12 +170,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActorController.cs" />
+    <Compile Include="Controllers\CarteleraController.cs" />
+    <Compile Include="Controllers\CineController.cs" />
+    <Compile Include="Controllers\DireccionCineController.cs" />
     <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PeliculaController.cs" />
+    <Compile Include="Controllers\TandaController.cs" />
+    <Compile Include="Controllers\TarifaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Actor.cs">
       <DependentUpon>CarteleraModel.tt</DependentUpon>
@@ -226,6 +234,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ActorPelicula.cs" />
+    <Compile Include="ViewModel\CarteleraViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\CarteleraDB.mdf" />
@@ -237,6 +247,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\MovieC.png" />
+    <Content Include="Content\jquery.timepicker.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -266,11 +277,13 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\TimepickerInit.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -311,6 +324,43 @@
     <Content Include="Views\Genero\Details.cshtml" />
     <Content Include="Views\Genero\Edit.cshtml" />
     <Content Include="Views\Genero\Index.cshtml" />
+    <Content Include="Views\Tanda\Create.cshtml" />
+    <Content Include="Views\Tanda\Delete.cshtml" />
+    <Content Include="Views\Tanda\Details.cshtml" />
+    <Content Include="Views\Tanda\Edit.cshtml" />
+    <Content Include="Views\Tanda\Index.cshtml" />
+    <Content Include="Views\Cine\Create.cshtml" />
+    <Content Include="Views\Cine\Delete.cshtml" />
+    <Content Include="Views\Cine\Details.cshtml" />
+    <Content Include="Views\Cine\Edit.cshtml" />
+    <Content Include="Views\Cine\Index.cshtml" />
+    <Content Include="Views\DireccionCine\Create.cshtml" />
+    <Content Include="Views\DireccionCine\Delete.cshtml" />
+    <Content Include="Views\DireccionCine\Details.cshtml" />
+    <Content Include="Views\DireccionCine\Edit.cshtml" />
+    <Content Include="Views\DireccionCine\Index.cshtml" />
+    <Content Include="Views\Tarifa\Create.cshtml" />
+    <Content Include="Views\Tarifa\Delete.cshtml" />
+    <Content Include="Views\Tarifa\Details.cshtml" />
+    <Content Include="Views\Tarifa\Edit.cshtml" />
+    <Content Include="Views\Tarifa\Index.cshtml" />
+    <Content Include="Views\Pelicula\Create.cshtml" />
+    <Content Include="Views\Pelicula\Delete.cshtml" />
+    <Content Include="Views\Pelicula\Details.cshtml" />
+    <Content Include="Views\Pelicula\Edit.cshtml" />
+    <Content Include="Views\Pelicula\Index.cshtml" />
+    <Content Include="Views\Actor\Create.cshtml" />
+    <Content Include="Views\Actor\Delete.cshtml" />
+    <Content Include="Views\Actor\Details.cshtml" />
+    <Content Include="Views\Actor\Edit.cshtml" />
+    <Content Include="Views\Actor\Index.cshtml" />
+    <Content Include="Views\Cartelera\Create.cshtml" />
+    <Content Include="Views\Cartelera\Delete.cshtml" />
+    <Content Include="Views\Cartelera\Details.cshtml" />
+    <Content Include="Views\Cartelera\Edit.cshtml" />
+    <Content Include="Views\Cartelera\Index.cshtml" />
+    <Content Include="Views\Pelicula\AddActor.cshtml" />
+    <Content Include="Views\Pelicula\QuitActor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
