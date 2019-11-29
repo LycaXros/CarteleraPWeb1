@@ -17,8 +17,10 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>true</Use64BitIISExpress>
-    <IISExpressSSLPort>44314</IISExpressSSLPort>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -170,6 +172,7 @@
     <Compile Include="Controllers\ActorController.cs" />
     <Compile Include="Controllers\CarteleraController.cs" />
     <Compile Include="Controllers\CineController.cs" />
+    <Compile Include="Controllers\ConsultaController.cs" />
     <Compile Include="Controllers\DireccionCineController.cs" />
     <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -204,6 +207,9 @@
       <DependentUpon>CarteleraModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ClasificacionMovie.cs">
+      <DependentUpon>CarteleraModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConsultaCartelera.cs">
       <DependentUpon>CarteleraModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DiaSemana.cs">
@@ -361,6 +367,7 @@
     <Content Include="Views\Cartelera\Index.cshtml" />
     <Content Include="Views\Pelicula\AddActor.cshtml" />
     <Content Include="Views\Pelicula\QuitActor.cshtml" />
+    <Content Include="Views\Consulta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

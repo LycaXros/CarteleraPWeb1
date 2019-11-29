@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\20181523\source\repos\CarteleraPWeb1\PWEB01B\Models\CarteleraModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\My Documents\Personal\Tareas\PWEB04\PWEB01B\Models\CarteleraModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

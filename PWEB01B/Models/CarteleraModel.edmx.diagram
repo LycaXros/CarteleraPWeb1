@@ -20,6 +20,7 @@
         <AssociationConnector Association="CarteleraDBModel.FK_PasaPelicula" ManuallyRouted="false" />
         <AssociationConnector Association="CarteleraDBModel.FK_Pasas_Tandas" ManuallyRouted="false" />
         <AssociationConnector Association="CarteleraDBModel.ActorPeliculas" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CarteleraDBModel.ConsultaCartelera" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
