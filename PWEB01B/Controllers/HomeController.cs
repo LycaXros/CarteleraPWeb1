@@ -22,24 +22,23 @@ namespace PWEB01B.Controllers
                 .Include(p => p.Cine.Direccion)
                 .Include(p => p.Cine.Tarifas);
             var query = (from c in data
-                         group c by new { c.CineId, c.PeliculaId } into Cartelera
-                         orderby Cartelera.Key.CineId
+                             //group c by new { c.CineId, c.PeliculaId } into Cartelera
+                         group c by c.CineId into Cartelera
+                         orderby Cartelera.Key
                          select new
                          {
-                             Cartelera.Key.CineId,
-                             Cartelera.Key.PeliculaId,
+                             CineId=Cartelera.Key,
                              Tandas = Cartelera.Select(x => x.Tanda.Hora),
-                             Cartelera.FirstOrDefault().Pelicula,
+                             Peliculas = Cartelera.Select(x=> x.Pelicula),
                              Cartelera.FirstOrDefault().Cine,
                          })
                                  .ToList()
                                  .Select(c => new ViewModel.CarteleraViewModel
                                  {
                                      Cine = c.Cine,
-                                     Pelicula = c.Pelicula,
+                                     Peliculas = c.Peliculas,
                                      Tandas = c.Tandas,
-                                     CineId = c.CineId,
-                                     PeliculaId = c.PeliculaId
+                                     CineId = c.CineId
                                  }).ToList();
             ViewBag.Cartelera = query;
             return View();

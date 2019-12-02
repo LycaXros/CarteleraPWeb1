@@ -33,5 +33,6 @@ namespace PWEB01B.Models
         public virtual DbSet<Pelicula> Peliculas { get; set; }
         public virtual DbSet<Tanda> Tandas { get; set; }
         public virtual DbSet<Tarifa> Tarifas { get; set; }
+        public virtual DbSet<ConsultaCartelera> ConsultaCartelera { get; set; }
     }
 }

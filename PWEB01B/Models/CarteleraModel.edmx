@@ -81,6 +81,31 @@
           <Property Name="Dia" Type="int" Nullable="false" />
           <Property Name="Precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'D:\MY DOCUMENTS\PERSONAL\TAREAS\PWEB04\PWEB01B\APP_DATA\CARTELERADB.MDF.dbo.ConsultaCartelera' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ConsultaCartelera">
+          <Key>
+            <PropertyRef Name="Cinema" />
+            <PropertyRef Name="Pelicula" />
+            <PropertyRef Name="Hora Tanda" />
+            <PropertyRef Name="Genero" />
+            <PropertyRef Name="Direccion" />
+            <PropertyRef Name="CineId" />
+            <PropertyRef Name="PeliculaId" />
+            <PropertyRef Name="TandaId" />
+            <PropertyRef Name="GeneroId" />
+          </Key>
+          <Property Name="Cinema" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Pelicula" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hora Tanda" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Genero" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="754" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="255" />
+          <Property Name="CineId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PeliculaId" Type="int" Nullable="false" />
+          <Property Name="TandaId" Type="int" Nullable="false" />
+          <Property Name="GeneroId" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_ActorEntity2">
           <End Role="Actors" Type="Self.Actors" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -193,6 +218,20 @@
           <EntitySet Name="Peliculas" EntityType="Self.Peliculas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tandas" EntityType="Self.Tandas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarifas" EntityType="Self.Tarifas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsultaCartelera" EntityType="Self.ConsultaCartelera" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ConsultaCartelera].[Cinema] AS [Cinema], 
+    [ConsultaCartelera].[Pelicula] AS [Pelicula], 
+    [ConsultaCartelera].[Hora Tanda] AS [Hora Tanda], 
+    [ConsultaCartelera].[Genero] AS [Genero], 
+    [ConsultaCartelera].[Direccion] AS [Direccion], 
+    [ConsultaCartelera].[Telefono] AS [Telefono], 
+    [ConsultaCartelera].[CineId] AS [CineId], 
+    [ConsultaCartelera].[PeliculaId] AS [PeliculaId], 
+    [ConsultaCartelera].[TandaId] AS [TandaId], 
+    [ConsultaCartelera].[GeneroId] AS [GeneroId]
+    FROM [dbo].[ConsultaCartelera] AS [ConsultaCartelera]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_ActorEntity2" Association="Self.FK_ActorEntity2">
             <End Role="Actors" EntitySet="Actors" />
             <End Role="ActorPeliculas" EntitySet="ActorPeliculas" />
@@ -244,11 +283,11 @@
             <PropertyRef Name="CineId" />
           </Key>
           <Property Name="CineId" Type="Guid" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK_CineDireccionCine" FromRole="Cines" ToRole="DireccionCines" />
           <NavigationProperty Name="Tarifas" Relationship="Self.FK_CineTarifa" FromRole="Cines" ToRole="Tarifas" />
-          <NavigationProperty Name="Pasando" Relationship="Self.FK_Pasas_Cines" FromRole="Cines" ToRole="Pasas" />
-          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cartelera" Relationship="Self.FK_Pasas_Cines" FromRole="Cines" ToRole="Pasas" />
         </EntityType>
         <EntityType Name="DireccionCine">
           <Key>
@@ -390,7 +429,7 @@
           <End Role="Actors" Type="Self.Actor" Multiplicity="*" />
           <End Role="Peliculas" Type="Self.Pelicula" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="CarteleraDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actors" EntityType="Self.Actor" />
           <EntitySet Name="Cines" EntityType="Self.Cine" />
           <EntitySet Name="DireccionCines" EntityType="Self.DireccionCine" />
@@ -427,6 +466,7 @@
             <End Role="Actors" EntitySet="Actors" />
             <End Role="Peliculas" EntitySet="Peliculas" />
           </AssociationSet>
+          <EntitySet Name="ConsultaCartelera" EntityType="CarteleraDBModel.ConsultaCartelera" />
         </EntityContainer>
         <EnumType Name="DiaSemana">
           <Member Name="Domingo" />
@@ -445,12 +485,35 @@
           <Member Name="D" />
           <Member Name="R" />
         </EnumType>
+        <EntityType Name="ConsultaCartelera">
+          <Key>
+            <PropertyRef Name="Cinema" />
+            <PropertyRef Name="Pelicula" />
+            <PropertyRef Name="Hora_Tanda" />
+            <PropertyRef Name="Genero" />
+            <PropertyRef Name="Direccion" />
+            <PropertyRef Name="CineId" />
+            <PropertyRef Name="PeliculaId" />
+            <PropertyRef Name="TandaId" />
+            <PropertyRef Name="GeneroId" />
+          </Key>
+          <Property Name="Cinema" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Pelicula" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hora_Tanda" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Genero" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="754" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CineId" Type="Guid" Nullable="false" />
+          <Property Name="PeliculaId" Type="Int32" Nullable="false" />
+          <Property Name="TandaId" Type="Int32" Nullable="false" />
+          <Property Name="GeneroId" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CarteleraDBModelStoreContainer" CdmEntityContainer="CarteleraDBEntities">
+        <EntityContainerMapping StorageEntityContainer="CarteleraDBModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Actors">
             <EntityTypeMapping TypeName="CarteleraDBModel.Actor">
               <MappingFragment StoreEntitySet="Actors">
@@ -463,8 +526,8 @@
           <EntitySetMapping Name="Cines">
             <EntityTypeMapping TypeName="CarteleraDBModel.Cine">
               <MappingFragment StoreEntitySet="Cines">
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="CineId" ColumnName="CineId" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -533,6 +596,22 @@
               <ScalarProperty Name="PeliculaId" ColumnName="PeliculaId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ConsultaCartelera">
+            <EntityTypeMapping TypeName="CarteleraDBModel.ConsultaCartelera">
+              <MappingFragment StoreEntitySet="ConsultaCartelera">
+                <ScalarProperty Name="GeneroId" ColumnName="GeneroId" />
+                <ScalarProperty Name="TandaId" ColumnName="TandaId" />
+                <ScalarProperty Name="PeliculaId" ColumnName="PeliculaId" />
+                <ScalarProperty Name="CineId" ColumnName="CineId" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Hora_Tanda" ColumnName="Hora Tanda" />
+                <ScalarProperty Name="Pelicula" ColumnName="Pelicula" />
+                <ScalarProperty Name="Cinema" ColumnName="Cinema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -547,7 +626,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
